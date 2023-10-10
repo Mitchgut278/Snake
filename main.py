@@ -12,7 +12,16 @@ class FRUIT:
         fruit_rect = pygame.Rect(self.pos.x * cell_size, self.pos.y * cell_size, cell_size, cell_size)
         pygame.draw.rect(screen, (126,166,114), fruit_rect)
 
-
+class SNAKE:
+    def __init__(self):
+        self.body = [Vector2(5,10), Vector2(6,10), Vector2(7,10)]
+    
+    def draw_snake(self):
+        for block in self.body:
+            # create a rect
+            block_rect = pygame.Rect(block.x * cell_size, block.y * cell_size, cell_size, cell_size)
+            # draw rect
+            pygame.draw.rect(screen, (183,111,122), block_rect)
 
 pygame.init()
 cell_size = 40
@@ -23,7 +32,7 @@ screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_si
 clock = pygame.time.Clock()
 
 fruit = FRUIT()
-
+snake = SNAKE()
 test_surface = pygame.Surface((100,200))
 test_surface.fill((0,0,255))
 test_rect = test_surface.get_rect(center = (200,250))
@@ -35,6 +44,7 @@ while True:
 
     screen.fill((175,250,70))
     fruit.draw_fruit()
+    snake.draw_snake()
     pygame.display.update()
     
     # pygame.draw.rect(screen, pygame.Color('red'), test_rect)
